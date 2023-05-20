@@ -1,2 +1,51 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        while (true)
+        {
+            Console.Write("Choose '+' for positive or '-' for negative matrix (press any other key to quit): ");
+            char operation = Convert.ToChar(Console.ReadLine());
+
+            if (operation != '+' && operation != '-')
+            {
+                Console.WriteLine("Exiting program...");
+                break;
+            }
+
+            Console.Write("Enter the size of the square matrix: ");
+            int size = Convert.ToInt32(Console.ReadLine());
+
+            double[,] matrix = new double[size, size];
+
+            Console.WriteLine("Input the elements of the matrix:");
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    Console.Write("Enter row {0} column {1}: ", i+1, j+1);
+                    matrix[i, j] = Convert.ToDouble(Console.ReadLine());
+                }
+            }
+
+            Console.WriteLine("Output matrix:");
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    if (operation == '+')
+                    {
+                        Console.Write(Math.Abs(matrix[i, j]) + " ");
+                    }
+                    else if (operation == '-')
+                    {
+                        Console.Write(-1*matrix[i, j] + " ");
+                    }
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+}
